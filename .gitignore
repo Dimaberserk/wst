@@ -1,0 +1,5 @@
+.idea
+.DS_Store
+lab1/*/com
+out
+target
