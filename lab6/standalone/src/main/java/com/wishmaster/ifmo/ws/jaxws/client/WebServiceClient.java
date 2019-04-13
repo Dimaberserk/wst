@@ -4,6 +4,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import com.wishmaster.ifmo.ws.jaxws.datasource.IntBounds;
 import com.wishmaster.ifmo.ws.jaxws.datasource.Student;
 import com.wishmaster.ifmo.ws.jaxws.datasource.StudentsFilter;
@@ -25,6 +26,8 @@ public class WebServiceClient {
     private static final Client CLIENT = Client.create();
 
     public static void main(String[] args) throws MalformedURLException {
+        CLIENT.addFilter(new HTTPBasicAuthFilter("admin", "nimda"));
+
         Map<String, Action> actionsByNumber = new TreeMap<>();
         IntStream.range(0, Action.values().length)
             .forEach(i -> actionsByNumber.put(String.valueOf(i), Action.values()[i]));
